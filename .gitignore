@@ -1,0 +1,9 @@
+*.h5
+*.db
+*.pt
+*.txt
+*.nc
+*.mat
+.DS_Store
+b2fgmtry
+b2fstate
