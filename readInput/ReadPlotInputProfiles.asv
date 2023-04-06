@@ -1,0 +1,96 @@
+close all;
+clear all;
+clc;
+
+% Physical constants:
+% =========================================================================
+e_c = 1.6020e-19;
+ep_0= 8.85E-12;
+k_B = 1.3806e-23;
+m_p = 1.6726e-27;
+
+m_e = 9.1094e-31;
+
+m_i = 25*m_e;
+mu0 = 4*pi*1e-7;
+c   = 299792458;
+E_0 = m_p*c^2;
+
+n_0=3.2E26;
+% T_e=1.27E5;
+v_i=0.1*c;
+% 
+ T_e=v_i^2*m_i/k_B
+
+wpe=sqrt(n_0*e_c^2/(ep_0*m_e))
+di=c/wpe
+
+l_d=sqrt((ep_0*k_B*T_e)/(n_0*e_c^2))
+
+
+%%
+x=ncread('../no_diffusion/tempScan/Te2-2/input/profilesProtoMPEX.nc','x');
+z=ncread('../no_diffusion/tempScan/Te2-2/input/profilesProtoMPEX.nc','z');
+
+ne=ncread('../no_diffusion/tempScan/Te2-2/input/profilesProtoMPEX.nc','ne');
+figure; imagesc(z(1:25:end-1),x(1:25:end-1),ne(1:25:end-1,1:25:end-1));
+set(gca,'YDir','normal')
+set(gca,'FontName','times','fontSize',18);
+ylabel('$r$ [m]','interpreter','Latex','fontSize',18);
+xlabel('$z$ [m]','interpreter','latex','fontSize',18);
+title('Input Density')
+colorbar;
+
+
+
+te=ncread('../no_diffusion/tempScan/Te2-2/input/profilesProtoMPEX.nc','te');
+figure; imagesc(z(1:25:end-1),x(1:25:end-1),te(1:25:end-1,1:25:end-1));
+set(gca,'YDir','normal')
+set(gca,'FontName','times','fontSize',24);
+ylabel('$r$ [m]','interpreter','Latex','fontSize',24);
+xlabel('$z$ [m]','interpreter','latex','fontSize',24);
+title('Input Te')
+colorbar;
+
+% % vx=ncread('../TeX1/input/profilesProtoMPEX.nc','vx');
+% % vx=ncread('../TeX1/input/profilesProtoMPEX.nc','vy');
+% vz=ncread('../no_diffusion/tempScan/Te2-2/input/profilesProtoMPEX.nc','vz');
+% figure;imagesc(z(1:25:end-1),x(1:25:end-1),vz(1:25:end-1,1:25:end-1));
+% set(gca,'FontName','times','fontSize',18);
+% ylabel('$r$ [m]','interpreter','Latex','fontSize',18);
+% xlabel('$z$ [m]','interpreter','latex','fontSize',18);
+% title('Input Vz')
+% colorbar;
+% % figure; plot(vz(1,:))
+% 
+% figure; plot(z,te(1,:))
+% xlabel('$z$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$T_e [eV]$','interpreter','Latex','fontSize',18);
+% title('Input Axial Te')
+% figure; plot(x,te(:,1))
+% xlabel('$r$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$T_e [eV]$','interpreter','Latex','fontSize',18);
+% title('Input Radial Te')
+% 
+% figure; plot(z,ne(1,:))
+% xlabel('$z$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$n_e [m^{-3}]$','interpreter','Latex','fontSize',18);
+% title('Input Axial ne')
+% figure; plot(x,ne(:,1))
+% xlabel('$r$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$n_e [m^{-3}]$','interpreter','Latex','fontSize',18);
+% title('Input Radial ne')
+% 
+% figure; plot(z,vz(1,:))
+% xlabel('$z$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$vz [m/s]$','interpreter','Latex','fontSize',18);
+% title('Input Axial Vz')
+% figure; plot(x,vz(:,1))
+% xlabel('$r$ [m]','interpreter','Latex','fontSize',18);
+% ylabel('$vz [m/s]$','interpreter','Latex','fontSize',18);
+% title('Input Radial Vz')
+
+
+
+
+
